@@ -8,6 +8,7 @@ function DartsScorer() {
   const [currentPlayer, setCurrentPlayer] = useState(0);
   const [legScores, setLegScores] = useState([0, 0]);
   const [totalScores, setTotalScores] = useState([0, 0]);
+  const [winner, setWinner] = useState(null);
 
   const switchPlayer = () => {
     setCurrentPlayer(currentPlayer === 0 ? 1 : 0);
@@ -25,28 +26,27 @@ function DartsScorer() {
     updatedTotalScores[currentPlayer] += legScores[currentPlayer];
 
     if (gameType === '301' && updatedTotalScores[currentPlayer] === 301) {
-      alert(`${players[currentPlayer]} wins the leg!`);
-      if (currentLeg === setSize) {
-        alert('Game over! Set finished!');
-      } else {
-        setCurrentLeg(currentLeg + 1);
-        setLegScores([0, 0]);
-        switchPlayer();
-      }
+      setWinner(players[currentPlayer]);
+      switchPlayer();
     } else if (gameType === '501' && updatedTotalScores[currentPlayer] === 501) {
-      alert(`${players[currentPlayer]} wins the leg!`);
-      if (currentLeg === setSize) {
-        alert('Game over! Set finished!');
-      } else {
-        setCurrentLeg(currentLeg + 1);
-        setLegScores([0, 0]);
-        switchPlayer();
-      }
+      setWinner(players[currentPlayer]);
+      switchPlayer();
     } else {
       switchPlayer();
     }
 
-    setTotalScores(updatedTotalScores);
+    if (currentLeg < setSize) {
+      setCurrentLeg(currentLeg + 1);
+      setLegScores([0, 0]);
+    }
+  };
+
+  const resetGame = () => {
+    setCurrentLeg(1);
+    setCurrentPlayer(0);
+    setLegScores([0, 0]);
+    setTotalScores([0, 0]);
+    setWinner(null);
   };
 
   return (
@@ -83,16 +83,25 @@ function DartsScorer() {
           onChange={(e) => setSetSize(parseInt(e.target.value))}
         />
       </div>
-      <h2>Leg {currentLeg}</h2>
-      <h3>Player 1: {legScores[0]}</h3>
-      <h3>Player 2: {legScores[1]}</h3>
-      <button onClick={() => addScore(1)}>Add 1</button>
-      <button onClick={() => addScore(2)}>Add 2</button>
-      <button onClick={() => addScore(3)}>Add 3</button>
-      <button onClick={() => finishTurn()}>Finish Turn</button>
-      <h2>Total Scores</h2>
-      <h3>Player 1: {totalScores[0]}</h3>
-      <h3>Player 2: {totalScores[1]}</h3>
+      {winner ? (
+        <div>
+          <h2>Winner: {winner}</h2>
+          <button onClick={resetGame}>Start New Game</button>
+        </div>
+      ) : (
+        <div>
+          <h2>Leg {currentLeg}</h2>
+          <h3>Player 1: {legScores[0]}</h3>
+          <h3>Player 2: {legScores[1]}</h3>
+          <button onClick={() => addScore(1)}>Add 1</button>
+          <button onClick={() => addScore(2)}>Add 2</button>
+          <button onClick={() => addScore(3)}>Add 3</button>
+          <button onClick={() => finishTurn()}>Finish Turn</button>
+          <h2>Total Scores</h2>
+          <h3>Player 1: {totalScores[0]}</h3>
+          <h3>Player 2: {totalScores[1]}</h3>
+        </div>
+      )}
     </div>
   );
 }
