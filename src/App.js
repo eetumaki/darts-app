@@ -1,10 +1,14 @@
+// App.js
 import React from 'react';
-import DartsScorer from './DartsScorer'; // Assuming DartsScorer component is in the same directory
+import Scoreboard from './components/Scoreboard';
+import Settings from './components/Settings';
 
 function App() {
   return (
     <div className="App">
-      <DartsScorer />
+      <h1>Darts Score Keeper</h1>
+      <Settings />
+      <Scoreboard />
     </div>
   );
 }
