@@ -8,12 +8,17 @@
   box-sizing: border-box;
 }
 
+.header{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
 body {
   background-color: #f7f7f7;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
   min-height: 100vh;
   margin: 0;
   font-family: 'Lato', sans-serif;
@@ -23,6 +28,9 @@ body {
 .container {
   margin: 30px auto;
   width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -59,20 +67,6 @@ h4 {
   border-right: 1px solid #dedede;
 }
 
-.money {
-  font-size: 20px;
-  letter-spacing: 1px;
-  margin: 5px 0;
-}
-
-.money.plus {
-  color: #2ecc71;
-}
-
-.money.minus {
-  color: #c0392b;
-}
-
 label {
   display: inline-block;
   margin: 10px 0;
@@ -86,6 +80,22 @@ input[type='number'] {
   font-size: 16px;
   padding: 10px;
   width: 100%;
+}
+
+.button-wrapper {
+  margin: 30px auto; /* Adjust margin as needed */
+  text-align: center; /* Center the content horizontally */
+}
+
+/* Style for the "Set Player Names" button */
+.set-player-names-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .btn {
@@ -102,54 +112,6 @@ input[type='number'] {
 }
 
 .btn:focus,
-.delete-btn:focus {
-  outline: 0;
-}
-
-.list {
-  list-style-type: none;
-  padding: 0;
-  margin-bottom: 40px;
-}
-
-.list li {
-  background-color: #fff;
-  box-shadow: var(--box-shadow);
-  color: #333;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-.list li.plus {
-  border-right: 5px solid #2ecc71;
-}
-
-.list li.minus {
-  border-right: 5px solid #c0392b;
-}
-
-.delete-btn {
-  cursor: pointer;
-  background-color: #e74c3c;
-  border: 0;
-  color: #fff;
-  font-size: 20px;
-  line-height: 20px;
-  padding: 2px 5px;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translate(-100%, -50%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.list li:hover .delete-btn {
-  opacity: 1;
-}
 
 .score-container {
     display: flex;
@@ -162,4 +124,107 @@ input[type='number'] {
 
 .score-container h4 {
     margin-right: 5px;
+}
+
+/* Style for the container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Style for the select elements */
+select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+/* Style for the buttons */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Style for the score containers */
+.score-container {
+  margin-bottom: 20px;
+}
+
+/* Style for the input fields */
+input[type="number"] {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+/* Style for the modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal.active {
+  display: block;
+}
+
+.modal-content {
+  background-color: white;
+  width: 350px; /* Set your desired width */
+  margin: 20% auto;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.modal-content button {
+  margin-top: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Add transitions to buttons */
+.btn, .delete-btn {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover, .delete-btn:hover {
+  background-color: #6b5bfb;
+}
+
+/* Apply hover effect to list items */
+.list li:hover {
+  transform: scale(1.02);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for the "Set Player Names" button */
+.set-player-names-btn {
+  width: 150px; /* Adjust the width as needed */
 }
