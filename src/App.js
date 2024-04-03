@@ -1,14 +1,11 @@
-// App.js
-import React from 'react';
-import Scoreboard from './components/Scoreboard';
-import Settings from './components/Settings';
+//App.js
+import React from 'react'
+import './App.css'
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Darts Score Keeper</h1>
-      <Settings />
-      <Scoreboard />
+  return(
+    <div>
+      Hello World!
     </div>
   );
 }
