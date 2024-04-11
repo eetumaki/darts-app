@@ -12,7 +12,6 @@ export const Score = () => {
   const [tempPoints2, setTempPoints2] = useState('');
   const [matchLength, setMatchLength] = useState(3); // Default to best of 3 games
   const [gamesWon, setGamesWon] = useState({ player1: 0, player2: 0 });
-  const [gameOver, setGameOver] = useState(false);
 
 
   const handleGameTypeChange = (event) => {
