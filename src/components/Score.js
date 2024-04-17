@@ -100,7 +100,7 @@ export const Score = () => {
 
   return (
     <div>
-      <label htmlFor="options">Choose game type: </label>
+      <label htmlFor="options">Game Type: </label>
       <select id="options" value={gameType} onChange={handleGameTypeChange}>
         <option value="option1">301</option>
         <option value="option2">501</option>
@@ -113,7 +113,7 @@ export const Score = () => {
         <option value='7'>7</option>
       </select>
       <div className='button-wrapper'>
-      <button className='set-players-btn' onClick={openModal}>Set Player Names</button> <br></br>
+      <button className='set-player-names-btn' onClick={openModal}>Set Player Names</button> <br></br>
       </div>
       <hr></hr>
       <div className='score-container'>
@@ -130,7 +130,7 @@ export const Score = () => {
       </div>
       <hr></hr>
       <div className='games-won-container'>
-        <h4>Games Won:</h4>
+        <h4>legs Won:</h4>
         <p>{playerNames.player1}: {gamesWon.player1}</p>
         <p>{playerNames.player2}: {gamesWon.player2}</p>
       </div>

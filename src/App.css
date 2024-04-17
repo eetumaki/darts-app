@@ -142,7 +142,6 @@ select {
   margin-right: 10px;
 }
 
-/* Style for the buttons */
 button {
   padding: 10px 20px;
   font-size: 16px;
@@ -151,7 +150,13 @@ button {
   color: white;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for background color change */
 }
+
+button:hover {
+  background-color: #0056b3; /* Change the background color on hover */
+}
+
 
 /* Style for the score containers */
 .score-container {
@@ -224,7 +229,19 @@ input[type="number"] {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Style for the "Set Player Names" button */
-.set-player-names-btn {
-  width: 150px; /* Adjust the width as needed */
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+.intro-button {
+  display: block;
+  width: 200px; /* Adjust width as needed */
+  margin: 0 auto; /* Center the button horizontally */
+  padding: 10px; /* Adjust padding as needed */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

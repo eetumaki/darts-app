@@ -2,16 +2,24 @@
 import React from 'react'
 import { Header } from '../components/Header'
 import { Score } from '../components/Score'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
 
 export function GamePage() {
+    const navigate = useNavigate()
+
+    const IntroductionPage = () => {
+        navigate('/')
+    }
+
     return(
         <div>
             <Header />
             <div className='container'>
                 <Score />
             </div>
-            <Link to="/">Back to Introduction</Link>
+        <button onClick={IntroductionPage} className='intro-button'>Introduction Page</button>
+            
         </div>
     )
 }
