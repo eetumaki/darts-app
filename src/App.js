@@ -1,16 +1,16 @@
-//App.js
-import React from 'react'
-import { Tabs } from './components/Tabs'
-//import { Header } from './components/Header'
-//import { Score } from './components/Score'
-//import { Leaderboard } from './components/Leaderboard'
-import './App.css'
+import React from 'react';
+// import { Tabs } from './components/Tabs';
+import { Scoreboard } from './components/Scoreboard';
+import './App.css';
+import { GameHistoryProvider } from './components/GameHistoryContext'; // Import the context provider
 
 function App() {
-  return(
-    <div className="Tabs">
-      <Tabs />
-    </div>
+  return (
+    <GameHistoryProvider> {/* Wrap your App component with the GameHistoryProvider */}
+      <div className="Tabs">
+        <Scoreboard />
+      </div>
+    </GameHistoryProvider>
   );
 }
 

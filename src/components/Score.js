@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { useContext } from 'react';
 import { updateScore } from './ScoreLogic';
 import { checkGameEnd, checkMatchEnd } from './GameLogic';
+import { GameHistoryContext } from './GameHistoryContext'; // Import the GameHistoryContext
 
 export const Score = () => {
-  const [gameType, setGameType] = useState('option1'); 
+  const { gameHistory, setGameHistory } = useContext(GameHistoryContext); // Access gameHistory context
+  const [gameType, setGameType] = useState('option1');
+  const gameTypeValue = gameType === 'option1' ? '301' : '501';
   const [score, setScore] = useState({ score1: 301, score2: 301 });
   const [playerNames, setPlayerNames] = useState({ player1: 'Player1', player2: 'Player2' });
   const [showModal, setShowModal] = useState(false);
@@ -11,7 +16,23 @@ export const Score = () => {
   const [tempPoints1, setTempPoints1] = useState('');
   const [tempPoints2, setTempPoints2] = useState('');
   const [matchLength, setMatchLength] = useState(3); // Default to best of 3 games
+  const [currentGame, setCurrentGame] = useState(1); // State to track the current game [1, 2, 3, ...
+  const [currentMatch, setCurrentMatch] = useState(1);
   const [gamesWon, setGamesWon] = useState({ player1: 0, player2: 0 });
+  const [turnsPassed, setTurnsPassed] = useState(0); // State to track the number of turns
+  
+
+  useEffect(() => {
+    const savedGameHistory = localStorage.getItem('gameHistory');
+    if (savedGameHistory) {
+      setGameHistory(JSON.parse(savedGameHistory));
+    }
+  }, [setGameHistory]);
+
+  useEffect(() => {
+    localStorage.setItem('gameHistory', JSON.stringify(gameHistory));
+  }, [gameHistory]);
+
 
 
   const handleGameTypeChange = (event) => {
@@ -62,35 +83,47 @@ export const Score = () => {
   };
 
   const handleConfirmScore = (player) => {
+    setTurnsPassed(turnsPassed + 1);
     const points = player === 'player1' ? tempPoints1 : tempPoints2;
     if (points !== '') {
       let updatedScore = updateScore(score, player === 'player1' ? 'score1' : 'score2', parseInt(points));
       if (updatedScore[player === 'player1' ? 'score1' : 'score2'] < 0) {
-        // If score goes below 0, revert to previous score and alert "Bust!"
         alert(`Bust! ${playerNames[player]} Score reset back to last round!`);
         updatedScore = score;
       }
       setScore(updatedScore);
+  
       if (checkGameEnd(updatedScore)) {
-        // Game end logic
+        const winner = updatedScore.score1 === 0 ? playerNames.player1 : playerNames.player2;
+        const gameInfo = {
+          match: currentMatch,
+          game: currentGame,
+          gameType: gameTypeValue,
+          players: { ...playerNames },
+          turnsPassed,
+          winner,
+        };
+        setGameHistory([...gameHistory, gameInfo]); // Update game history context here
         alert(`Game over! ${playerNames[player]} wins the game!`);
+        setCurrentGame(currentGame + 1);
         const updatedGamesWon = { ...gamesWon, [player]: gamesWon[player] + 1 };
         setGamesWon(updatedGamesWon);
         if (checkMatchEnd(updatedGamesWon, matchLength)) {
-          // Match end logic
           alert(`Match over! ${playerNames[player]} wins the match!`);
-          // You can reset the match or perform any other action here
+          setCurrentMatch(currentMatch + 1);
+          setCurrentGame(1);
         } else {
-          // Reset scores for the next game based on the current game type
           const newScore = {
             score1: gameType === 'option1' ? 301 : 501,
             score2: gameType === 'option1' ? 301 : 501
           };
           setScore(newScore);
+          setTurnsPassed(0);
         }
       }
     }
   };
+  
   
   
 
@@ -134,6 +167,7 @@ export const Score = () => {
         <p>{playerNames.player1}: {gamesWon.player1}</p>
         <p>{playerNames.player2}: {gamesWon.player2}</p>
       </div>
+      
  
       {showModal && (
         <div className={`modal ${showModal ? `active` : ''}`}>
