@@ -100,7 +100,7 @@ input[type='number'] {
 
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
+  background-color: #007bff;
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
@@ -151,6 +151,10 @@ button {
   color: white;
   border-radius: 4px;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3; /* Change the background color on hover */
 }
 
 /* Style for the score containers */
@@ -215,13 +219,22 @@ input[type="number"] {
 }
 
 .btn:hover, .delete-btn:hover {
-  background-color: #6b5bfb;
+  background-color: #0056b3;
 }
 
 /* Apply hover effect to list items */
 .list li:hover {
   transform: scale(1.02);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+.dart-board-image {
+  width: 450px;
 }
 
 /* Style for the "Set Player Names" button */
@@ -252,6 +265,10 @@ ul.nav li {
 }
 
 ul.nav li:nth-child(2) {
+  border-radius: 0;
+}
+
+ul.nav li:nth-child(3) {
   border-radius: 0;
   border-bottom-right-radius: 2rem;
   border-top-right-radius: 2rem;
