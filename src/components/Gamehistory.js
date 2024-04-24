@@ -17,6 +17,8 @@ export function GameHistory() {
             <th>Player 2</th>
             <th>Turns Passed</th>
             <th>Winner</th>
+            <th>Total wins (Player 1)</th>
+            <th>Total wins (Player 2)</th>
           </tr>
         </thead>
         <tbody>
@@ -28,6 +30,8 @@ export function GameHistory() {
               <td>{game.players.player2}</td>
               <td>{game.turnsPassed}</td>
               <td>{game.winner}</td>
+              <td>{game.totalWins.player1}</td>
+              <td>{game.totalWins.player2}</td>
             </tr>
           ))}
         </tbody>

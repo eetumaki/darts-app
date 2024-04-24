@@ -6,7 +6,7 @@ import { checkGameEnd, checkMatchEnd } from './GameLogic';
 import { GameHistoryContext } from './GameHistoryContext'; // Import the GameHistoryContext
 
 export const Score = () => {
-  const { gameHistory, setGameHistory } = useContext(GameHistoryContext); // Access gameHistory context
+  const { gameHistory, setGameHistory, gamesWon, setGamesWon, totalWins, setTotalWins, currentMatch, setCurrentMatch } = useContext(GameHistoryContext); // Access gameHistory context
   const [gameType, setGameType] = useState('option1');
   const gameTypeValue = gameType === 'option1' ? '301' : '501';
   const [score, setScore] = useState({ score1: 301, score2: 301 });
@@ -17,8 +17,6 @@ export const Score = () => {
   const [tempPoints2, setTempPoints2] = useState('');
   const [matchLength, setMatchLength] = useState(3); // Default to best of 3 games
   const [currentGame, setCurrentGame] = useState(1); // State to track the current game [1, 2, 3, ...
-  const [currentMatch, setCurrentMatch] = useState(1);
-  const [gamesWon, setGamesWon] = useState({ player1: 0, player2: 0 });
   const [turnsPassed, setTurnsPassed] = useState(0); // State to track the number of turns
   
 
@@ -32,6 +30,10 @@ export const Score = () => {
   useEffect(() => {
     localStorage.setItem('gameHistory', JSON.stringify(gameHistory));
   }, [gameHistory]);
+
+  useEffect(() => {
+    localStorage.setItem('gamesWon', JSON.stringify(gamesWon));
+  }, [gamesWon]);
 
 
 
@@ -94,37 +96,44 @@ export const Score = () => {
       setScore(updatedScore);
   
       if (checkGameEnd(updatedScore)) {
-        const winner = updatedScore.score1 === 0 ? playerNames.player1 : playerNames.player2;
+        const winner = updatedScore.score1 === 0 ? 'player1' : 'player2';
+        const updatedGamesWon = { ...gamesWon, [winner]: gamesWon[winner] + 1 };
+        setGamesWon(updatedGamesWon);
+        const updatedTotalWins = { ...totalWins, [winner]: totalWins[winner] + 1 };
+        setTotalWins(updatedTotalWins);
+  
         const gameInfo = {
           match: currentMatch,
           game: currentGame,
           gameType: gameTypeValue,
           players: { ...playerNames },
+          player1: playerNames.player1,
+          player2: playerNames.player2,
           turnsPassed,
           winner,
+          totalWins: updatedTotalWins,
         };
+  
         setGameHistory([...gameHistory, gameInfo]); // Update game history context here
         alert(`Game over! ${playerNames[player]} wins the game!`);
         setCurrentGame(currentGame + 1);
-        const updatedGamesWon = { ...gamesWon, [player]: gamesWon[player] + 1 };
-        setGamesWon(updatedGamesWon);
+  
         if (checkMatchEnd(updatedGamesWon, matchLength)) {
           alert(`Match over! ${playerNames[player]} wins the match!`);
           setCurrentMatch(currentMatch + 1);
+          setGamesWon({ player1: 0, player2: 0 });
           setCurrentGame(1);
-        } else {
-          const newScore = {
-            score1: gameType === 'option1' ? 301 : 501,
-            score2: gameType === 'option1' ? 301 : 501
-          };
-          setScore(newScore);
-          setTurnsPassed(0);
         }
+  
+        const newScore = {
+          score1: gameType === 'option1' ? 301 : 501,
+          score2: gameType === 'option1' ? 301 : 501
+        };
+        setScore(newScore);
+        setTurnsPassed(0);
       }
     }
   };
-  
-  
   
 
   const handleMatchLengthChange = (event) => {
