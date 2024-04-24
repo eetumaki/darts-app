@@ -100,7 +100,7 @@ input[type='number'] {
 
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
+  background-color: #007bff;
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
@@ -220,7 +220,7 @@ input[type="number"] {
 }
 
 .btn:hover, .delete-btn:hover {
-  background-color: #6b5bfb;
+  background-color: #0056b3;
 }
 
 /* Apply hover effect to list items */
