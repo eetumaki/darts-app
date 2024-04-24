@@ -1,4 +1,5 @@
 import ThirdHTP from '../Images/ThirdHTP.png'
+import dartBoard from '../Images/dartBoard.png'
 import { useNavigate } from 'react-router-dom'
 
 export function HTP3() {
@@ -15,9 +16,12 @@ export function HTP3() {
             <br />
             <br />
             <p>After clicking "Confirm" you get back the game</p>
-            <p>Now you can insert your score to the input box and click "Confirm" to reduce your score from the original points</p>
+            <p>Now you can insert your score by clicking on the dart board to reduce your score from the original points</p>
             <br />
+            <div className='header'>
             <img src={ThirdHTP} alt='guide'/>
+            <img src={dartBoard} alt='dart board' className='dart-board-image'/>
+            </div>
             <p>On the bottom is a counter that tells you how many full Legs each player has won</p>
             </div>
             <br />

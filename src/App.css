@@ -234,6 +234,10 @@ img {
   margin: 0 auto;
 }
 
+.dart-board-image {
+  width: 450px;
+}
+
 .intro-button {
   display: block;
   width: 200px; /* Adjust width as needed */
