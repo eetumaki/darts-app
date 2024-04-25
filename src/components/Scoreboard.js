@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+//score functionality and game history handled in the same component
+
+import React, { useState } from 'react';
 import { Header } from './Header';
 import { Score } from './Score';
 import { GameHistory } from './Gamehistory';
@@ -38,7 +40,7 @@ export const Scoreboard = () => {
           </li>
         </ul>
       </div>
-      <div className="outlet">
+      <div className="outlet"> 
         {activeTab === "scoreboard" && <Score />}
         {activeTab === "gamehistory" && <GameHistory />}
         {activeTab === 'HTP' && <HTP1 />}
