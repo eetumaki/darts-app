@@ -5,9 +5,9 @@ import { GameHistoryProvider } from "./GameHistoryContext";
 export function Main() {
     return (
         <GameHistoryProvider>
-            <div className="Tabs">
+            {/* <div className="Tabs"> */}
                 <Scoreboard />
-            </div>
+            {/* </div> */}
         </GameHistoryProvider>
     )
 }

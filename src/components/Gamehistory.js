@@ -5,38 +5,40 @@ export function GameHistory() {
   const { gameHistory } = useContext(GameHistoryContext); // Access game history from context
 
   return (
-    <div className="game-history">
+    <div className="container">
+    <div className="game-history-container">
       
       <h2>Game History</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Match</th>
-            <th>Game Type</th>
-            <th>Player 1</th>
-            <th>Player 2</th>
-            <th>Turns Passed</th>
-            <th>Winner</th>
-            <th>Total wins (Player 1)</th>
-            <th>Total wins (Player 2)</th>
+      <table className="game-history-table">
+        <thead className="game-history-head">
+          <tr className="game-history-row-header">
+            <th className="game-history-header-cell">Match</th>
+            <th className="game-history-header-cell">Game Type</th>
+            <th className="game-history-header-cell">Player 1</th>
+            <th className="game-history-header-cell">Player 2</th>
+            <th className="game-history-header-cell">Turns Passed</th>
+            <th className="game-history-header-cell">Winner</th>
+            <th className="game-history-header-cell">Total wins (Player 1)</th>
+            <th className="game-history-header-cell">Total wins (Player 2)</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="game-history-tbody">
           {gameHistory.map((game, index) => (
-            <tr key={index}>
-              <td>{game.match}</td>
-              <td>{game.gameType}</td>
-              <td>{game.players.player1}</td>
-              <td>{game.players.player2}</td>
-              <td>{game.turnsPassed}</td>
-              <td>{game.winner}</td>
-              <td>{game.totalWins.player1}</td>
-              <td>{game.totalWins.player2}</td>
+            <tr className="game-history-row" key={index}>
+              <td className="game-history-cell">{game.match}</td>
+              <td className="game-history-cell">{game.gameType}</td>
+              <td className="game-history-cell">{game.players.player1}</td>
+              <td className="game-history-cell">{game.players.player2}</td>
+              <td className="game-history-cell">{game.turnsPassed}</td>
+              <td className="game-history-cell">{game.players[game.winner]}</td>
+              <td className="game-history-cell">{game.totalWins.player1}</td>
+              <td className="game-history-cell">{game.totalWins.player2}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
+    </div>
     </div>
   );
 }

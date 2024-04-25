@@ -5,8 +5,7 @@ import { Header } from './Header';
 import { Score } from './Score';
 import { GameHistory } from './Gamehistory';
 import { HTP1 } from '../Pages/HTP1';
-// import { GameHistoryProvider } from './GameHistoryContext'; // Import the GameHistoryProvider
-// import { GameHistoryContext } from './GameHistoryContext'; // Import the GameHistoryContext
+
 
 export const Scoreboard = () => {
   const [activeTab, setActiveTab] = useState("scoreboard");
@@ -16,13 +15,22 @@ export const Scoreboard = () => {
   };
 
   return (
+    <div className="container">
     <div className="Scoreboard">
       <Header />
       <div className="Tabs">
         <ul className="nav">
           <li
-            className={activeTab === "scoreboard" ? "active" : ""}
-            onClick={() => handleTabChange("scoreboard")}
+          className={activeTab === 'HTP' ? 'active' : ""}
+          onClick={() => handleTabChange('HTP')}
+            
+          >
+            How to Play
+          </li>
+          <li
+          className={activeTab === "scoreboard" ? "active" : ""}
+          onClick={() => handleTabChange("scoreboard")}
+
           >
             Scoreboard
           </li>
@@ -32,12 +40,6 @@ export const Scoreboard = () => {
           >
             Game History
           </li>
-          <li
-            className={activeTab === 'HTP' ? 'active' : ""}
-            onClick={() => handleTabChange('HTP')}
-          >
-            How to Play
-          </li>
         </ul>
       </div>
       <div className="outlet"> 
@@ -45,6 +47,7 @@ export const Scoreboard = () => {
         {activeTab === "gamehistory" && <GameHistory />}
         {activeTab === 'HTP' && <HTP1 />}
       </div>
+    </div>
     </div>
   );
 };

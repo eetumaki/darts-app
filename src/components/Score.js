@@ -3,14 +3,13 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 import { updateScore } from './ScoreLogic';
 import { checkGameEnd, checkMatchEnd } from './GameLogic';
-import { GameHistoryContext } from './GameHistoryContext'; // Import the GameHistoryContext
+import { GameHistoryContext } from './GameHistoryContext';
 
 export const Score = () => {
-  const { gameHistory, setGameHistory, gamesWon, setGamesWon, totalWins, setTotalWins, currentMatch, setCurrentMatch } = useContext(GameHistoryContext); // Access gameHistory context
+  const { playerNames, setPlayerNames, gameHistory, setGameHistory, gamesWon, setGamesWon, totalWins, setTotalWins, currentMatch, setCurrentMatch } = useContext(GameHistoryContext); // Access gameHistory context
   const [gameType, setGameType] = useState('option1');
   const gameTypeValue = gameType === 'option1' ? '301' : '501';
   const [score, setScore] = useState({ score1: 301, score2: 301 });
-  const [playerNames, setPlayerNames] = useState({ player1: 'Player1', player2: 'Player2' });
   const [showModal, setShowModal] = useState(false);
   const [tempPlayerNames, setTempPlayerNames] = useState({});
   const [tempPoints1, setTempPoints1] = useState('');
@@ -142,6 +141,7 @@ export const Score = () => {
 
   return (
     <div>
+      <div className="options-container">
       <label htmlFor="options">Choose game type: </label>
       <select id="options" value={gameType} onChange={handleGameTypeChange}>
         <option value="option1">301</option>
@@ -154,9 +154,11 @@ export const Score = () => {
         <option value='5'>5</option>
         <option value='7'>7</option>
       </select>
+      </div>
       <div className='button-wrapper'>
       <button className='set-players-btn' onClick={openModal}>Set Player Names</button> <br></br>
       </div>
+      
       <hr></hr>
       <div className='score-container'>
         <h4>{playerNames.player1} Score:</h4>

@@ -14,8 +14,10 @@
   display: flex;
 }
 
+
 body {
-  background-color: #f7f7f7;
+  /* background-color: #f7f7f7; */
+  background-image: url('./Images/background.jpg');
   display: flex;
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
@@ -25,12 +27,43 @@ body {
   font-size: 18px;
 }
 
+
 .container {
+  background-color: #fff;
   margin: 30px auto;
-  width: 400px;
+  min-width: 1050px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.Tabs {
+  background-color: #fff;
+  margin: 0 auto;
+  max-width: 500px;
+  max-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.howtoplay-container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.howtoplay-image-container {
+  display: flex;
+  max-width: 800px;
+  justify-content: center;
+  align-items: center;
+}
+
+.options-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
 h1 {
@@ -100,7 +133,7 @@ input[type='number'] {
 
 .btn {
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #6cbc75;
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
@@ -123,15 +156,25 @@ input[type='number'] {
 }
 
 .score-container h4 {
-    margin-right: 5px;
+  color: #2b7b34;
+    margin-right: 15px;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #e0e0e0;
 }
 
-/* Style for the container */
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+.games-won-container {
+  padding: 30px;
+  display: block;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+
 }
+
+
 
 /* Style for the select elements */
 select {
@@ -140,6 +183,7 @@ select {
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-right: 10px;
+  margin-left: 10px;
 }
 
 /* Style for the buttons */
@@ -147,14 +191,14 @@ button {
   padding: 10px 20px;
   font-size: 16px;
   border: none;
-  background-color: #007bff;
+  background-color: #6cbc75;
   color: white;
   border-radius: 4px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3; /* Change the background color on hover */
+  background-color: #2b7b34; /* Change the background color on hover */
 }
 
 /* Style for the score containers */
@@ -219,7 +263,7 @@ input[type="number"] {
 }
 
 .btn:hover, .delete-btn:hover {
-  background-color: #0056b3;
+  background-color: #2b7b34;
 }
 
 /* Apply hover effect to list items */
@@ -248,7 +292,7 @@ ul.nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #39A2DB;
+  border: 1px solid #6cbc75;
   border-radius: 2rem;
   padding-left: 0px;
 }
@@ -275,9 +319,74 @@ ul.nav li:nth-child(3) {
 }
 
 ul.nav li:hover {
-  background: rgba(50, 224, 196, 0.15);
+  background: rgba(50, 224, 122, 0.15);
 }
 
 ul.nav li.active {
-  background: #39A2DB;
+  background: #6cbc75;
+}
+
+.game-history-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-width: 1px;
+}
+
+
+.game-history-table {
+  border: 1px solid #6cbc75;
+  border-radius: 10px;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  
+}
+
+.game-history-table, thead tr {
+  background-color: #6cbc75;
+  color: #ffffff;
+  text-align: left;
+  
+  
+}
+
+.game-history-table th {
+  color: white;
+  border: 0px solid black;
+  padding: 10px 15px;
+  margin: 0;
+  
+}
+
+.game-history-table td {
+  color: black;
+  border: 0px solid black;
+  padding: 10px 8px;
+  margin: 0;
+  
+}
+
+.game-history-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.game-history-table tbody tr:nth-of-type(odd) {
+  background-color: #e0e0e0;
+}
+
+.game-history-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.game-history-table tbody tr:last-of-type {
+  border-bottom: 2px solid #6cbc75;
+}
+
+.game-history-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
 }
